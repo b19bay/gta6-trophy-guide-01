@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Ledger — GTA VI Trophy Guide &amp; Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Leonida Ledger</h1>
+    <p class="sub">GTA VI trophy guide &amp; tracker — all 55 PlayStation trophies: 1 platinum, 2 gold, 6 silver, 46 bronze (28 hidden). Works offline; nothing leaves this browser.</p>
+  </div>
+  <div class="progress" id="progressBox" aria-live="polite">
+    <div class="big" id="progressCount">0 / 55</div>
+    <div class="bar"><div class="fill" id="progressFill"></div></div>
+    <div class="pct" id="progressPct">0% to the platinum</div>
+  </div>
+</header>
+<nav class="tabs" id="tabs">
+  <a href="#/list" data-tab="list">Checklist</a>
+  <a href="#/roadmap" data-tab="roadmap">Roadmap to Platinum</a>
+  <a href="#/missables" data-tab="missables">Missables</a>
+  <a href="#/about" data-tab="about">Sources &amp; method</a>
+</nav>
+<section class="controls" id="controls">
+  <input id="search" type="search" placeholder="Search trophies by name…" aria-label="Search trophies">
+  <div class="chips" id="kindChips"></div>
+  <label>Grade
+    <select id="grade">
+      <option value="all">All grades</option>
+      <option value="platinum">Platinum</option>
+      <option value="gold">Gold</option>
+      <option value="silver">Silver</option>
+      <option value="bronze">Bronze</option>
+    </select>
+  </label>
+  <label class="toggle"><input id="spoilers" type="checkbox"> Hide story spoilers</label>
+  <label class="toggle"><input id="earnedOnly" type="checkbox"> Earned only</label>
+  <button id="export" type="button">Export progress</button>
+  <label class="import">Import progress <input id="import" type="file" accept="application/json,.json"></label>
+</section>
+<main id="view"></main>
+<footer>
+  <p>Guides are written in our own words for this guide; official trophy names and descriptions are shown as PlayStation publishes them. Every guide names its sources. No Rockstar artwork is used. Data: app/data/trophies.json.</p>
+</footer>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
