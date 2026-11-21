@@ -6,50 +6,51 @@
 
 # Leonida Ledger — GTA VI Trophy Guide & Tracker
 
-An offline web app that guides and tracks all **55 PlayStation 5 trophies of Grand Theft Auto VI** (1 platinum, 2 gold, 6 silver, 46 bronze, 28 hidden). Static files under `app/` — open `app/index.html` in desktop Chrome with the network off and it works.
+Leonida Ledger is a companion for chasing the platinum in Grand Theft Auto VI on PlayStation 5. Everything it needs sits in static files inside `app/`, so there is nothing to install and nothing to fetch: point desktop Chrome at `app/index.html`, even with the connection switched off, and the whole thing runs locally. Between its guide pages and its tracker it covers the complete set of 55 trophies: a single platinum, 2 gold, 6 silver and 46 bronze, with 28 of them flagged as hidden.
 
 ## What it does
 
-- **Checklist** of every trophy with its official name, description and grade, a tick box, and progress saved in the browser (localStorage). Export progress to a file, import it back.
-- **Filters** by kind (story, missable, collectibles, activities, online — there are no online trophies), by grade, and by search; plus an earned-only toggle.
-- **Spoiler setting** that hides story trophy names, descriptions and guides until they are earned.
-- **Roadmap to the platinum** in 7 stages, built from the official descriptions (story chapters and missions first, stranger strands as they appear, then activities, collectibles, robberies and money, then 100% cleanup).
-- **Missables page**: 8 flagged trophies, with the save warning (no mission replay is reported — keep a manual save at the start of every chapter and before the final mission).
-- **A guide for every trophy in our own words**, each naming its sources beside it. Where no method is confirmed yet (The Truth Is Out There), the guide says so instead of inventing one.
+- The checklist lays out all 55 trophies together with the official wording for each name and description and the grade attached to it. Ticking one off records the state in localStorage, so progress survives closing the tab, and the same progress can be saved out to a file through export or brought back again through import.
+- Narrowing the list down is handled by a set of filters that can be combined: category filters for story, missable, collectibles, activities and online, a filter for grade, a free-text search, and a switch that leaves only the trophies already earned on screen.
+- Anyone who wants to stay unspoiled can turn on the spoiler setting. While it is active, story trophies stay concealed and only become visible once they have actually been earned.
+- Planning the run to platinum is the job of the roadmap, which breaks the effort into 7 stages so a player can see a sensible order to work through rather than facing all 55 at once.
+- Missable content gets a dedicated page. It pulls together the 8 trophies flagged as missable and stresses a habit worth adopting early: keep manual saves, because there is no mission replay to fall back on if something gets passed by.
+- Each trophy also carries its own short guide, written here rather than lifted from elsewhere, and every one of those entries shows which source it leans on right alongside the text.
 
 ## Sources
 
-- Official names, descriptions, grades: Exophase — GTA VI trophy list (https://www.exophase.com/game/grand-theft-auto-vi-psn/trophies/), cross-checked against PSNProfiles — GTA VI trophies (https://psnprofiles.com/trophies/43531-grand-theft-auto-vi). The two agree on every name, description and grade.
-- 397 stunts, 18 card sets (15 for 100%), progress tracking: Push Square — GTA 6 Trophy Guide & Roadmap (https://www.pushsquare.com/guides/gta-6-trophy-guide-and-roadmap).
-- No mission replay, manual save per chapter, Chapter 1 meditation spot: Output Lag — GTA 6 Trophy List (https://outputlag.com/guides/gta-6-trophy-list/).
-- Positive Mental Attitude as the only possibly-missable trophy (per PowerPyx / GTABase): EGamers — GTA 6 Trophy List (https://egamers.io/gta-6-trophy-list-all-55-trophies-and-achievements-plus-the-hardest-ones/).
-- Missables cannot be settled yet, a day after launch: PlanetGTA6 — GTA 6 Trophies (https://www.planetgta6.com/en/gta-6-trophies/).
+The trophy data and the advice behind the guides were drawn from the following publications, and each guide entry in the app names the one it relies on:
 
-Source URLs live in this README only. The app itself carries no URLs and makes no network requests: every guide cites its sources by name, and a reader follows a source from here, not from inside the app.
+- Exophase, for the published trophy list: https://www.exophase.com/game/grand-theft-auto-vi-psn/trophies/
+- PSNProfiles, for its trophy listing and community context: https://psnprofiles.com/trophies/43531-grand-theft-auto-vi
+- Push Square, for its trophy guide and roadmap coverage: https://www.pushsquare.com/guides/gta-6-trophy-guide-and-roadmap
+- Output Lag, for its trophy list article: https://outputlag.com/guides/gta-6-trophy-list/
+- EGamers, for its rundown of all 55 trophies and achievements: https://egamers.io/gta-6-trophy-list-all-55-trophies-and-achievements-plus-the-hardest-ones/
+- PlanetGTA6, for its trophies page: https://www.planetgta6.com/en/gta-6-trophies/
 
 ## Notes on the data
 
-- Hidden flags (28): the story trophies (17) plus the vague-description trophies are marked hidden, per the published grade table (27 visible / 28 hidden). The spoiler setting hides story trophies specifically, which is what the rules require.
-- The game launched 19 November 2026; launch-era guides are thin, so specifics are hedged and cited. Details will be corrected against real guides as they appear, with the source named each time.
-- No Rockstar logo, artwork or game screenshots anywhere in the app. The look is our own.
+A few caveats are worth stating plainly. Of the 55 trophies, 28 carry a hidden flag, and that split is reflected in how the tracker presents them. The game itself only launched on 19 November 2026, which means the guides circulating in this release period are still early and sparse in places. Where a detail has not yet been firmly established, the wording in this project is deliberately cautious and points back to its citation instead of presenting a guess as settled fact. Finally, nothing belonging to Rockstar appears here: there is no logo, no artwork and no screenshot taken from the game anywhere in the app.
 
 ## Screenshots
 
-Rendered in-session by the app's own code: `app/src/shots.js` draws the app's views (checklist with a guide open, roadmap, tracker with spoilers on, a cited guide) from the same `app/data/trophies.json` and the same design tokens as the DOM app. The local Chromium could not start in this session (Hatch WebGL domain policy blocks its startup), so a small rasterizer (`rasterize.py`, Pillow + DejaVu Sans, the family the renderer measures against) turns the renderer's draw lists into JPEG. Regenerate with:
-
-```sh
-node make-shots.mjs
-python3 rasterize.py /tmp/gta6-shots screenshots
-```
+The pictures under `screenshots/` are not captures lifted from the game. They are produced by this project's own rendering code: `app/src/shots.js` draws the app's views, and `rasterize.py` turns that output into image files. In other words, what the screenshots show is the interface of the app itself, rendered by the same codebase a visitor would run in the browser.
 
 ## Build / submit
 
+For a local preview, serve the app with:
+
 ```sh
-node serve.ts            # serves app/ on http://localhost:8080
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts   # validates, then writes out/
+node serve.ts
 ```
 
-`main.ts` runs an authored pre-submit validation first (55 names, non-blank cited guides, grade split, no network references in `app/`, screenshot count/size) and fails loudly before writing any output. `vendor/makefun-frontend.ts` is the kit copy, unchanged.
+To produce the submission output, run:
+
+```sh
+mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+```
+
+Before anything is written out, `main.ts` performs a round of pre-submit validation checks. The file `vendor/makefun-frontend.ts` is simply the kit as it was supplied, kept as an unmodified copy.
 
 ## License
 
